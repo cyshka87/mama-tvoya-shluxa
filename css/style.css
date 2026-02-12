@@ -1,0 +1,189 @@
+/* ===== RESET ===== */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  background: #000;
+  color: #fff;
+  font-family: -apple-system, BlinkMacSystemFont,
+               "SF Pro Display", "SF Pro Text",
+               system-ui, sans-serif;
+  overflow-x: hidden;
+}
+
+/* ===== DESKTOP BLOCK ===== */
+
+.desktop-block {
+  display: none;
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 20px;
+  font-size: 18px;
+  color: #8a8a8a;
+}
+
+@media (min-width: 768px) {
+  .page { display: none; }
+  .desktop-block { display: flex; }
+}
+
+/* ===== MOBILE LAYOUT ===== */
+
+.page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ===== HERO ===== */
+
+.hero {
+  margin-top: 48px;
+  padding: 0 24px;
+  text-align: center;
+}
+
+.hero-text {
+  font-size: 28px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+
+  background: linear-gradient(90deg, #ffffff, #8a8a8a, #ffffff);
+  background-size: 200% 100%;
+  animation: gradientMove 8s ease infinite;
+
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+/* ===== CENTER IMAGE ===== */
+
+.center {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 40px 24px;
+}
+
+.card {
+  width: 100%;
+  max-width: 420px;
+  border-radius: 28px;
+  overflow: hidden;
+
+  box-shadow:
+    0 25px 60px rgba(0,0,0,0.8),
+    0 0 40px rgba(255,255,255,0.04);
+
+  transition:
+    transform 0.6s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 0.6s ease;
+
+  opacity: 0;
+  transform: translateY(40px);
+}
+
+.card img {
+  width: 100%;
+  display: block;
+}
+
+/* subtle hover for touch devices that emulate hover */
+.card:active {
+  transform: scale(0.98);
+}
+
+/* ===== HINT ===== */
+
+.hint {
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #6f6f6f;
+  margin-bottom: 16px;
+
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+/* ===== BOTTOM CARD ===== */
+
+.bottom-card {
+  width: 100%;
+  max-width: 420px;
+  margin: 0 24px 40px;
+  border-radius: 26px;
+  overflow: hidden;
+
+  box-shadow:
+    0 20px 50px rgba(0,0,0,0.9),
+    0 0 30px rgba(255,255,255,0.03);
+
+  transition:
+    transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 0.4s ease;
+
+  opacity: 0;
+  transform: translateY(40px);
+}
+
+.bottom-card img {
+  width: 100%;
+  display: block;
+}
+
+.bottom-card:active {
+  transform: scale(0.97);
+}
+
+/* ===== PAGE REVEAL ===== */
+
+.page.reveal .hero-text,
+.page.reveal .card,
+.page.reveal .hint,
+.page.reveal .bottom-card {
+  opacity: 1;
+  transform: translateY(0);
+  transition:
+    opacity 0.8s ease,
+    transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.page.reveal .card { transition-delay: 0.1s; }
+.page.reveal .hint { transition-delay: 0.2s; }
+.page.reveal .bottom-card { transition-delay: 0.3s; }
+
+/* ===== GRADIENT ANIMATION ===== */
+
+@keyframes gradientMove {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* ===== NOISE OVERLAY ===== */
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.035;
+  background-image: url("https://grainy-gradients.vercel.app/noise.svg");
+}
